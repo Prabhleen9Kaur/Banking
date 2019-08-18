@@ -13,4 +13,8 @@ Users should be able to create and edit their portfolios using a search box thro
 * Stock Information Display:
 When a user clicks on a stock, for example AAPL, the stock's candlestick chart, statistics, fundamentals, predictions, should be displayed. Users should be able to zoom in on the graph, mouse over for more daily information, and draw trendlines with percentage displays. The current traded price, volumes traded, volatility, and fundamentals of the company will be displayed below the graph, and a user can click to see more details. News articles or twitter feeds regarding the stock will be displayed on the right, along with a sentamental analysis of social media feeds.
 
+<h4>Environment:</h4> 
+This program is built with the Spring Framework using Spring Boot, Spring MVC, Spring JPA projects, H2, MySQL.
+
+
 This is still some modifications.
