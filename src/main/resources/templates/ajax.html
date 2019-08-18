@@ -1,0 +1,180 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+
+<head>
+<title>StockTracker</title>
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+
+<link rel="stylesheet" type="text/css"
+	href="webjars/bootstrap/3.3.7/css/bootstrap.min.css" />
+<!-- JQuery -->
+<script type="text/javascript" th:src="@{/js/jquery-3.2.0.min.js}"></script>
+<!--Import https://www.devbridge.com/sourcery/components/jquery-autocomplete/#-->
+<script type="text/javascript" th:src="@{/js/jquery.autocomplete.js}"></script>
+<!-- Compiled and minified JavaScript -->
+<script type="text/javascript" th:src="@{/js/materialize.min.js}"></script>
+<script type="text/javascript" th:src="@{/js/main.js}"></script>
+<script src="https://code.jquery.com/ui/1.12.1/jquery-ui.js"></script>
+<link rel="stylesheet"
+	href="//code.jquery.com/ui/1.12.1/themes/base/jquery-ui.css" />
+
+
+<script>
+	$(document).ready(function() {
+
+		$('#symbol').devbridgeAutocomplete({
+			serviceUrl : '/suggestion',
+			paramName : 'searchstr',
+			minChars : 1,
+			autoSelectFirst : true,
+		});
+
+	});
+</script>
+</head>
+<style>
+.autocomplete-suggestions {
+	border: 1px solid #999;
+	background: #FFF;
+	overflow: auto;
+}
+
+.autocomplete-suggestion {
+	padding: 5px 5px;
+	white-space: nowrap;
+	overflow: hidden;
+	font-size: 22px
+}
+
+.autocomplete-selected {
+	background: #F0F0F0;
+}
+
+.autocomplete-suggestions strong {
+	font-weight: bold;
+	color: #3399FF;
+}
+
+.ui-widget label {
+	text-decoration: underline;
+}
+
+.ui-widget input {
+	width: 70%;
+	color: red;
+}
+
+.ui-menu .ui-menu-item {
+	color: blue;
+	background-color: gray;
+}
+
+table {
+	font-family: arial, sans-serif;
+	border-collapse: collapse;
+	width: 100%;
+}
+
+td, th {
+	border: 1px solid #dddddd;
+	text-align: left;
+	padding: 8px;
+}
+
+#search-form2 {
+	text-align: center;
+}
+</style>
+<body>
+
+	<nav class="navbar navbar-inverse">
+		<div class="container">
+			<div class="navbar-header">
+				<a class="navbar-brand" href="#">StockTracker</a>
+			</div>
+		</div>
+	</nav>
+
+
+
+
+	<div class="container" style="min-height: 500px">
+
+		<div class="container">
+
+			<h4>This is a way to track your portfolio in real time. If you
+				purchased 10 shares of Apple (SYMBOL:AAPL) at 150.00, you would
+				enter the symbol (AAPL), the amount of shares (10), and the price
+				you purchased at (150). Make sure the purchase tab is selected. If
+				you later on sold these shares at 200.00, you would enter the symbol
+				(AAPL), the amount of shares sold (10), and the price sold at (200).
+				Make sure the sale tab is selected.</h4>
+
+			<h4>Select Sample Purchase or Sample Sale to see an example
+				transaction.</h4>
+
+
+			<form class="form-inline" id="sample-purchase">
+
+				<button type="submit" id="sample-purchase" class="btn">Sample
+					Purchase</button>
+			</form>
+
+			<p></p>
+
+			<form class="form-inline" id="sample-sale">
+				<button type="submit" id="sample-sale" class="btn">Sample
+					Sale</button>
+			</form>
+
+			<p></p>
+
+
+			<form class="form-inline" id="search-form2"
+				th:object="${stockTransaction}">
+
+				<input type="text" class="form-control" id="symbol"
+					placeholder="Symbol" /> <input type="number" min="1" max="100000"
+					class="form-control" id="shares" placeholder="Amount Of Shares" />
+				<input type="number" min="1" max="100000" step="0.01" class="form-control"
+					id="price" placeholder="Price of Shares" /> <select
+					class="form-control" th:field="*{state}">
+					<option th:id="state"
+						th:each="state : ${T(com.example.demo.StockTransaction.State).values()}"
+						th:value="${state}" th:text="${state}"></option>
+				</select>
+				<button type="submit" id="bth-search2" class="btn">Post
+					Transaction</button>
+			</form>
+
+		</div>
+
+
+		<h1>Portfolio</h1>
+
+		<div id="feedback"></div>
+
+		<div align="center">
+			<h4>Current Profit:</h4>
+			<div id="feed"></div>
+		</div>
+
+
+		<h1>Realized Profits</h1>
+
+
+		<div id="messages"></div>
+
+		<h1>Transactions</h1>
+
+		<div id="stocks"></div>
+
+
+
+
+
+	</div>
+
+
+</body>
+</html>
