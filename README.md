@@ -1,7 +1,7 @@
-# <h2>Banking
+# <h2>Banking</h2>
 This project is to manage portfolio analysis.
 
-<h4>Project Functionalities:
+<h4>Project Functionalities:</h4>
 
 * Sigin/Signup:
 User should be able to signup/sigin using UserName, Password, email.
